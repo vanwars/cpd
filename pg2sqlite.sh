@@ -1,4 +1,4 @@
-FILE_NAME=chicago_police_sqlite3.sql
+FILE_NAME=chicago_police_sqlite3_1.sql
 rm $FILE_NAME
 
 # note: requires .pgpass

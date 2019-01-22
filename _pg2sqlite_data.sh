@@ -8,9 +8,14 @@
 
 # Dump individual tables:
 # Note: make sure Password is set up:
-FILE_NAME=chicago_police_sqlite3.sql
+FILE_NAME=chicago_police_sqlite3_1.sql
 
 tables=(
+    data_allegation
+    data_allegation_areas
+    data_allegation_line_areas
+    data_allegationcategory
+    data_area
     data_attachmentfile
     data_attachmentrequest
     data_award
@@ -50,8 +55,7 @@ do
 done
 
 
-echo 'Cleaning data...'
-# sed -i 's/ true/ \x27t\x27/g' $FILE_NAME
-# sed -i 's/ false/ \x27f\x27/g' $FILE_NAME
+echo 'Making sqlite3 compatible...'
 sed -i '/^SET/ d' $FILE_NAME
 sed -i '/^SELECT pg_catalog/ d' $FILE_NAME
+sed -i 's/public\.//g' $FILE_NAME

@@ -1,7 +1,12 @@
 # Dump individual tables:
 # Note: make sure Password is set up:
-FILE_NAME=chicago_police_sqlite3.sql
+FILE_NAME=chicago_police_sqlite3_1.sql
 tables=(
+    data_allegation
+    data_allegation_areas
+    data_allegation_line_areas
+    data_allegationcategory
+    data_area
     data_attachmentfile
     data_attachmentrequest
     data_award
@@ -41,7 +46,6 @@ do
 done
 
 
-FILE_NAME=chicago_police_sqlite3.sql
 echo 'Removing unnecessary schema declarations...'
 sed -i 's/public\.//g' $FILE_NAME
 sed -i '/^SET/ d' $FILE_NAME
@@ -59,6 +63,7 @@ sed -i '/^\s*INCREMENT/ d' $FILE_NAME
 sed -i '/^\s*NO/ d' $FILE_NAME
 sed -i '/^\s*CACHE/ d' $FILE_NAME
 sed -i '/^\s*--/ d' $FILE_NAME
+sed -i 's/geometry(MultiPolygon,4326)/character varying(2048)/g' $FILE_NAME
 sed -i 's/geometry(MultiLineString,4326)/character varying(2048)/g' $FILE_NAME
 sed -i 's/geometry(Point,4326)/character varying(255)/g' $FILE_NAME
 sed -i 's/varying(20)\[\]/varying(511)/g' $FILE_NAME
