@@ -9,7 +9,6 @@
 # Dump individual tables:
 # Note: make sure Password is set up:
 FILE_NAME=chicago_police_sqlite3.sql
-# rm $FILE_NAME
 
 tables=(
     data_attachmentfile
@@ -52,5 +51,7 @@ done
 
 
 echo 'Cleaning data...'
-sed -i 's/ true/ \x27t\x27/g' $FILE_NAME
-sed -i 's/ false/ \x27f\x27/g' $FILE_NAME
+# sed -i 's/ true/ \x27t\x27/g' $FILE_NAME
+# sed -i 's/ false/ \x27f\x27/g' $FILE_NAME
+sed -i '/^SET/ d' $FILE_NAME
+sed -i '/^SELECT pg_catalog/ d' $FILE_NAME

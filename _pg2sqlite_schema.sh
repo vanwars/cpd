@@ -62,8 +62,3 @@ sed -i '/^\s*--/ d' $FILE_NAME
 sed -i 's/geometry(MultiLineString,4326)/character varying(2048)/g' $FILE_NAME
 sed -i 's/geometry(Point,4326)/character varying(255)/g' $FILE_NAME
 sed -i 's/varying(20)\[\]/varying(511)/g' $FILE_NAME
-
-
-geometry(MultiLineString,4326)
-geometry(Point,4326)
-tags character varying(20)[] NOT NULL
